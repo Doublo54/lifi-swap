@@ -1,4 +1,4 @@
-import { LiFiWidget, ChainType } from '@lifi/widget'
+import { LiFiWidget, ChainType, HiddenUI } from '@lifi/widget'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { useDisconnect } from 'wagmi'
@@ -15,6 +15,7 @@ function App() {
       variant: 'wide' as const,
       subvariant: 'default' as const,
       chainTypes: [ChainType.EVM],
+      hiddenUI: [HiddenUI.PoweredBy],
       walletConfig: {
         onConnect: () => openConnectModal?.(),
         async onDisconnect() {
@@ -26,7 +27,6 @@ function App() {
           border: 'none',
           borderRadius: '0px',
           boxShadow: 'none',
-          minHeight: '100vh',
         },
         palette: {
           mode: 'dark' as const,
@@ -57,6 +57,26 @@ function App() {
           config={widgetConfig}
         />
       </div>
+      <section className="recommendations">
+        <h2 className="recommendations-title">Other swaps & bridges to check</h2>
+        <div className="recommendations-grid">
+          <a href="https://jumper.exchange/" target="_blank" rel="noopener noreferrer" className="rec-card">
+            <span className="rec-name">Jumper</span>
+            <span className="rec-tag">LI.FI</span>
+            <p className="rec-desc">Multi-chain swap & bridge aggregator. Best routes across 20+ chains and dozens of DEXs.</p>
+          </a>
+          <a href="https://app.across.to/bridge-and-swap" target="_blank" rel="noopener noreferrer" className="rec-card">
+            <span className="rec-name">Across</span>
+            <span className="rec-tag">Bridge</span>
+            <p className="rec-desc">Intent-based bridging with fast fills. Usually the cheapest and fastest for L2-to-L2 transfers.</p>
+          </a>
+          <a href="https://www.relay.link/bridge" target="_blank" rel="noopener noreferrer" className="rec-card">
+            <span className="rec-name">Relay</span>
+            <span className="rec-tag">Bridge</span>
+            <p className="rec-desc">Instant cross-chain execution powered by relayers. Near-zero wait times for supported routes.</p>
+          </a>
+        </div>
+      </section>
     </div>
   )
 }
